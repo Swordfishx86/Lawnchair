@@ -451,7 +451,7 @@ corriges des bugs pendant son temps libre. Également connu précédemment sous 
     <string name="hide_from_predictions">Masquer des suggestions</string>
     <string name="recents_not_connected">QuickSwitch est désactivé.</string>
     <string name="app_actions_pref_title_in_search">Actions</string>
-    <string name="search_clear_history">Effacer l’historique</string>
+    <string name="search_clear_history">Effacer l\'historique</string>
     <string name="recent_task_option_popup_window">Dialogue</string>
     <string name="drawer_tabs">Onglets</string>
     <string name="add_new_tab">Ajouter</string>
@@ -473,7 +473,7 @@ corriges des bugs pendant son temps libre. Également connu précédemment sous 
     <string name="allow">Autoriser</string>
     <string name="deny">Annuler</string>
     <string name="sesame_enable_integration_title">Partage des données</string>
-    <string name="sesame_enable_integration_description"><![CDATA[Activer le partage de données d'utilisation avec Sesame ? Vous pourrez changer cela plus tard.]]></string>
+    <string name="sesame_enable_integration_description"><![CDATA[Activer le partage de données d\'utilisation avec Sesame ? Vous pourrez changer cela plus tard.]]></string>
     <string name="sesame_shortcut_disabled">Sesame est désactivé.</string>
     <string name="font_variant_italic">Italique</string>
     <string name="font_weight_thin">Fin</string>

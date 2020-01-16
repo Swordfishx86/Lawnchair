@@ -57,12 +57,12 @@ public class TaskMenuView extends AbstractFloatingView {
 
     /** Note that these will be shown in order from top to bottom, if available for the task. */
     public static final TaskSystemShortcut[] MENU_OPTIONS = new TaskSystemShortcut[] {
-            new TaskSystemShortcut.AppInfo(),
+            new TaskSystemShortcut.ForceStop(),
+            new TaskSystemShortcut.Install(),
+            new TaskSystemShortcut.Pin(),
             new TaskSystemShortcut.SplitScreen(),
             new TaskSystemShortcut.PopupWindow(),
-            new TaskSystemShortcut.Pin(),
-            new TaskSystemShortcut.Install(),
-            new TaskSystemShortcut.ForceStop(),
+            new TaskSystemShortcut.AppInfo(),
     };
 
     private static final int REVEAL_OPEN_DURATION = 150;
@@ -149,11 +149,12 @@ public class TaskMenuView extends AbstractFloatingView {
         return true;
     }
 
+    @RequiresApi(api = VERSION_CODES.P)
     private void addMenuOptions(TaskView taskView) {
-        Drawable icon = taskView.getTask().icon.getConstantState().newDrawable();
-        int iconSize = getResources().getDimensionPixelSize(R.dimen.task_thumbnail_icon_size);
-        icon.setBounds(0, 0, iconSize, iconSize);
-        mTaskIconAndName.setCompoundDrawables(null, icon, null, null);
+        // Drawable icon = taskView.getTask().icon.getConstantState().newDrawable();
+        // int iconSize = getResources().getDimensionPixelSize(R.dimen.task_thumbnail_icon_size);
+        // icon.setBounds(0, 0, iconSize, iconSize);
+        // mTaskIconAndName.setCompoundDrawables(null, icon, null, null);
         mTaskIconAndName.setText(TaskUtils.getTitle(getContext(), taskView.getTask()));
         mTaskIconAndName.setOnClickListener(v -> close(true));
 
@@ -189,8 +190,7 @@ public class TaskMenuView extends AbstractFloatingView {
         params.gravity = Gravity.LEFT;
         setLayoutParams(params);
         setX(sTempRect.left - insets.left);
-        setY(sTempRect.top + getResources().getDimension(R.dimen.task_thumbnail_top_margin)
-                - insets.top);
+        setY(sTempRect.top + getResources().getDimension(R.dimen.task_thumbnail_top_margin) - insets.top);
     }
 
     private void animateOpen() {

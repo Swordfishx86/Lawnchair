@@ -13,25 +13,28 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<com.android.quickstep.views.TaskView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.quickstep.views.TaskView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:defaultFocusHighlightEnabled="false"
-    android:elevation="4dp"
-    android:focusable="true">
 
+    android:clipToPadding="false"
+    android:elevation="4dp"
+    android:focusable="true"
+    tools:targetApi="o">
+    <!-- android:defaultFocusHighlightEnabled="false" -->
     <com.android.quickstep.views.TaskThumbnailView
         android:id="@+id/snapshot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/task_thumbnail_top_margin" />
+        android:layout_marginTop="24dp" />
 
     <com.android.quickstep.views.IconView
         android:id="@+id/icon"
         android:layout_width="@dimen/task_thumbnail_icon_size"
         android:layout_height="@dimen/task_thumbnail_icon_size"
-        android:layout_gravity="top|center_horizontal"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="-24dp"
         android:focusable="false"
         android:importantForAccessibility="no" />
 </com.android.quickstep.views.TaskView>

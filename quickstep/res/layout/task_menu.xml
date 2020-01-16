@@ -14,13 +14,11 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<com.android.quickstep.views.TaskMenuView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.quickstep.views.TaskMenuView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
     android:background="@drawable/task_menu_bg"
-    android:paddingBottom="@dimen/task_card_menu_shadow_height"
     android:orientation="vertical"
     android:visibility="invisible">
 
@@ -28,19 +26,19 @@
         android:id="@+id/task_icon_and_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:drawablePadding="@dimen/deep_shortcut_drawable_padding"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:textSize="12sp"/>
+        android:textSize="12sp" />
 
     <LinearLayout
         android:id="@+id/menu_option_layout"
         style="@style/TaskMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:divider="@drawable/all_apps_divider"
-        android:showDividers="beginning"
         android:paddingStart="@dimen/task_card_menu_horizontal_padding"
         android:paddingEnd="@dimen/task_card_menu_horizontal_padding"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:showDividers="beginning" />
 
 </com.android.quickstep.views.TaskMenuView>
