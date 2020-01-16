@@ -28,6 +28,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
+import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -36,6 +37,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import com.android.launcher3.AbstractFloatingView;
 import com.android.launcher3.BaseDraggingActivity;
 import com.android.launcher3.LauncherAnimUtils;
@@ -51,6 +53,7 @@ import com.android.quickstep.TaskUtils;
 /**
  * Contains options for a recent task when long-pressing its icon.
  */
+@RequiresApi(api = VERSION_CODES.P)
 public class TaskMenuView extends AbstractFloatingView {
 
     private static final Rect sTempRect = new Rect();
@@ -134,7 +137,7 @@ public class TaskMenuView extends AbstractFloatingView {
     private void setBackgroundRadius() {
         float radius = Utilities.getLawnchairPrefs(getContext()).getRecentsRadius();
         GradientDrawable background = (GradientDrawable) ((LayerDrawable) getBackground()).getDrawable(1);
-        background.setCornerRadii(new float[] {radius, radius, radius, radius, 0, 0, 0, 0});
+        background.setCornerRadii(new float[] {radius, radius, radius, radius, radius, radius, radius, radius});
     }
 
     private boolean populateAndShowForTask(TaskView taskView) {
@@ -144,24 +147,26 @@ public class TaskMenuView extends AbstractFloatingView {
         mActivity.getDragLayer().addView(this);
         mTaskView = taskView;
         addMenuOptions(mTaskView);
+
         orientAroundTaskView(mTaskView);
         post(this::animateOpen);
+
         return true;
     }
 
     @RequiresApi(api = VERSION_CODES.P)
     private void addMenuOptions(TaskView taskView) {
-        // Drawable icon = taskView.getTask().icon.getConstantState().newDrawable();
-        // int iconSize = getResources().getDimensionPixelSize(R.dimen.task_thumbnail_icon_size);
-        // icon.setBounds(0, 0, iconSize, iconSize);
-        // mTaskIconAndName.setCompoundDrawables(null, icon, null, null);
+        Drawable icon = taskView.getTask().icon.getConstantState().newDrawable();
+        int iconSize = getResources().getDimensionPixelSize(R.dimen.task_thumbnail_icon_size);
+        icon.setBounds(0, 0, iconSize, iconSize);
         mTaskIconAndName.setText(TaskUtils.getTitle(getContext(), taskView.getTask()));
+        mTaskIconAndName.setCompoundDrawables(null, null, null, icon);
         mTaskIconAndName.setOnClickListener(v -> close(true));
 
         // Move the icon and text up half an icon size to lay over the TaskView
         LinearLayout.LayoutParams params =
                 (LinearLayout.LayoutParams) mTaskIconAndName.getLayoutParams();
-        params.topMargin = (int) -getResources().getDimension(R.dimen.task_thumbnail_top_margin);
+        params.topMargin = (int) getResources().getDimension(R.dimen.task_thumbnail_top_margin);
         mTaskIconAndName.setLayoutParams(params);
 
         for (TaskSystemShortcut menuOption : MENU_OPTIONS) {
@@ -181,17 +186,7 @@ public class TaskMenuView extends AbstractFloatingView {
         mOptionLayout.addView(menuOptionView);
     }
 
-    private void orientAroundTaskView(TaskView taskView) {
-        measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
-        mActivity.getDragLayer().getDescendantRectRelativeToSelf(taskView, sTempRect);
-        Rect insets = mActivity.getDragLayer().getInsets();
-        BaseDragLayer.LayoutParams params = (BaseDragLayer.LayoutParams) getLayoutParams();
-        params.width = sTempRect.width();
-        params.gravity = Gravity.LEFT;
-        setLayoutParams(params);
-        setX(sTempRect.left - insets.left);
-        setY(sTempRect.top + getResources().getDimension(R.dimen.task_thumbnail_top_margin) - insets.top);
-    }
+ms
 
     private void animateOpen() {
         animateOpenOrClosed(false);
@@ -239,8 +234,8 @@ public class TaskMenuView extends AbstractFloatingView {
 
     private RoundedRectRevealOutlineProvider createOpenCloseOutlineProvider() {
         float radius = getResources().getDimension(R.dimen.task_corner_radius);
-        Rect fromRect = new Rect(0, 0, getWidth(), 0);
-        Rect toRect = new Rect(0, 0, getWidth(), getHeight());
+        Rect fromRect = new Rect(0, 0, getMeasuredWidth(), 0);
+        Rect toRect = new Rect(0, 0, getMeasuredWidth(), getMeasuredHeight());
         return new RoundedRectRevealOutlineProvider(radius, radius, fromRect, toRect);
     }
 }

@@ -22,23 +22,25 @@
     android:orientation="vertical"
     android:visibility="invisible">
 
-    <TextView
-        android:id="@+id/task_icon_and_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:drawablePadding="@dimen/deep_shortcut_drawable_padding"
-        android:gravity="center_horizontal"
-        android:textSize="12sp" />
-
     <LinearLayout
         android:id="@+id/menu_option_layout"
         style="@style/TaskMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@drawable/all_apps_divider"
         android:paddingStart="@dimen/task_card_menu_horizontal_padding"
         android:paddingEnd="@dimen/task_card_menu_horizontal_padding"
         android:showDividers="beginning" />
+
+    <TextView
+        android:id="@+id/task_icon_and_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/all_apps_divider"
+        android:layout_marginBottom="-16dp"
+        android:drawablePadding="@dimen/deep_shortcut_drawable_padding"
+        android:gravity="center_horizontal"
+        android:textSize="12sp" />
+
+
 
 </com.android.quickstep.views.TaskMenuView>

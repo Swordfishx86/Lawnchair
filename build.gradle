@@ -49,6 +49,12 @@ android {
             keyAlias "Lawnchair"
             keyPassword localProps.getProperty("keyPass") ?:System.getenv("KEY_PASSWORD")
         }
+        sf {
+            storeFile file(localProps.getProperty("keystoreFile") ?: System.getenv("KEYSTORE"))
+            storePassword localProps.getProperty("storePass") ?: System.getenv("STORE_PASSWORD")
+            keyAlias 'Swordfish'
+            keyPassword localProps.getProperty("keyPass") ?: System.getenv("KEY_PASSWORD")
+        }
     }
     defaultConfig {
         minSdkVersion 21
@@ -94,12 +100,11 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            if (ciBuild) {
-                if (System.getenv("CI_EVENT_TYPE") != "pull_request") {
-                    signingConfig signingConfigs.ci
-                }
+			signingConfig signingConfigs.sf
+            if (ciBuild && System.getenv("CI_EVENT_TYPE") != "pull_request") {
+                signingConfig signingConfigs.ci
             }
-
+			
             dexOptions {
                 matchingFallbacks = ['debug']
             }
@@ -112,10 +117,9 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
                     'proguard.flags'
-            if (ciBuild) {
-                if (System.getenv("CI_EVENT_TYPE") != "pull_request") {
-                    signingConfig signingConfigs.ci
-                }
+			signingConfig signingConfigs.sf
+            if (ciBuild && System.getenv("CI_EVENT_TYPE") != "pull_request") {
+                signingConfig signingConfigs.ci
             }
         }
 
@@ -123,10 +127,9 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
                     'proguard.flags'
-            if (ciBuild) {
-                if (System.getenv("CI_EVENT_TYPE") != "pull_request") {
-                    signingConfig signingConfigs.ci
-                }
+			signingConfig signingConfigs.sf
+            if (ciBuild && System.getenv("CI_EVENT_TYPE") != "pull_request") {
+                signingConfig signingConfigs.ci
             }
 
             dexOptions {
