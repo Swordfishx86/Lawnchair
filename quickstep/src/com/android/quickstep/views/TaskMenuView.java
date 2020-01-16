@@ -28,6 +28,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
+import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -36,6 +37,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import com.android.launcher3.AbstractFloatingView;
 import com.android.launcher3.BaseDraggingActivity;
 import com.android.launcher3.LauncherAnimUtils;
@@ -51,6 +53,7 @@ import com.android.quickstep.TaskUtils;
 /**
  * Contains options for a recent task when long-pressing its icon.
  */
+@RequiresApi(api = VERSION_CODES.P)
 public class TaskMenuView extends AbstractFloatingView {
 
     private static final Rect sTempRect = new Rect();
@@ -187,7 +190,7 @@ public class TaskMenuView extends AbstractFloatingView {
         Rect insets = mActivity.getDragLayer().getInsets();
         BaseDragLayer.LayoutParams params = (BaseDragLayer.LayoutParams) getLayoutParams();
         params.width = sTempRect.width();
-        params.gravity = Gravity.LEFT;
+        params.gravity = Gravity.START;
         setLayoutParams(params);
         setX(sTempRect.left - insets.left);
         setY(sTempRect.top + getResources().getDimension(R.dimen.task_thumbnail_top_margin) - insets.top);
