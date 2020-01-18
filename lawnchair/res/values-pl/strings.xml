@@ -13,8 +13,8 @@
     <string name="change_default_home">Ustaw jako aplikację ekranu głównego</string>
     <string name="action_apply">Gotowe</string>
     <!-- Note: new. Replaces “OK” in dialogs. -->
-    <string name="theme_dark_theme_mode_on">Włączone</string>
-    <string name="theme_dark_theme_mode_off">Wyłączono</string>
+    <string name="theme_dark_theme_mode_on">Włączony</string>
+    <string name="theme_dark_theme_mode_off">Wyłączony</string>
     <!-- Section 2 -->
     <string name="theme_title">Motyw</string>
     <string name="pixel_ui_pref_summary">Ikony, kolory, rozmycie</string>
@@ -98,7 +98,7 @@
     <string name="pref_hide_statusbar_clock">Ukryj zegar na pasku statusu</string>
     <string name="root_access_required">Wymagany dostęp do roota.</string>
     <string name="smartspace_time_24_h">Użyj formatu 24-godzinnego</string>
-    <string name="title_use_pill_qsb">Pasek wyszukiwania w stylu “pill”</string>
+    <string name="title_use_pill_qsb">Pasek wyszukiwania w stylu pastylki</string>
     <string name="pref_category_weather">Inne</string>
     <string name="pref_smartspace_widget_provider">Źródło informacji o pogodzie</string>
     <string name="google_app">Aplikacja Google</string>
@@ -161,7 +161,7 @@
     <string name="pref_drawer_columns">Liczba Kolumn</string>
     <string name="pref_prediction_count">Liczba Sugestii</string>
     <string name="pref_drawer_padding">Wysokość Wiersza</string>
-    <string name="hide_apps">Skróty Ukrytych Aplikacji</string>
+    <string name="hide_apps">Ukryte Skróty Aplikacji</string>
     <string name="categorization">Kategorie</string>
     <string name="pref_appcategorization_enable_title">Kategoryzuj aplikacje</string>
     <string name="pref_appcategorization_folders_title">Foldery</string>
@@ -563,4 +563,7 @@
     <string name="action_switch_apps">Przełącz Aplikacje</string>
     <string name="icon_shape_system_default">Razem z systemem</string>
     <string name="title_missing_notification_access">Wymagany jest dostęp do powiadomień.</string>
+    <string name="activity_not_found">Aplikacja nie jest zainstalowana.</string>
+    <string name="out_of_space">Brak miejsca na pulpicie.</string>
+    <string name="hotseat_out_of_space">Brak miejsca w doku.</string>
 </resources>
