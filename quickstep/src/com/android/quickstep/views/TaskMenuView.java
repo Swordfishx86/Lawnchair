@@ -186,7 +186,17 @@ public class TaskMenuView extends AbstractFloatingView {
         mOptionLayout.addView(menuOptionView);
     }
 
-ms
+    private void orientAroundTaskView(TaskView taskView) {
+        measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+        mActivity.getDragLayer().getDescendantRectRelativeToSelf(taskView, sTempRect);
+        Rect insets = mActivity.getDragLayer().getInsets();
+        BaseDragLayer.LayoutParams params = (BaseDragLayer.LayoutParams) getLayoutParams();
+        params.width = sTempRect.width();
+        params.gravity = Gravity.LEFT;
+        setLayoutParams(params);
+        setX(sTempRect.left - insets.left);
+        setY(sTempRect.top + getResources().getDimension(R.dimen.task_thumbnail_top_margin) - insets.top);
+    }
 
     private void animateOpen() {
         animateOpenOrClosed(false);
